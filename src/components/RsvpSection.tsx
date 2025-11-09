@@ -231,7 +231,7 @@ export default function RsvpSection() {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute w-[382.078px] h-10 left-[18.961px] top-[476px]">
+                  {/* <div className="absolute w-[382.078px] h-10 left-[18.961px] top-[476px]">
                     <div className="size-full absolute">
                       <div className="absolute w-[382.078px] h-10 left-0 top-0">
                         <div className="size-full overflow-hidden absolute bg-[rgb(63,_92,_132)] rounded-3xl"></div>
@@ -248,7 +248,7 @@ export default function RsvpSection() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <motion.div
                     className="absolute w-[381px] left-[19.5px] top-[43px]"
                     initial={{ opacity: 0, y: 20 }}
