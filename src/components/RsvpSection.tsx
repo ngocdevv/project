@@ -1,7 +1,31 @@
 import React from "react";
 import { motion } from "motion/react";
+import Modal from "react-modal";
 
 const WEDDING_DATE = new Date("2026-01-17T00:00:00").getTime();
+const RSVP_MODAL_STYLES: Modal.Styles = {
+  overlay: {
+    backgroundColor: "rgba(17, 24, 39, 0.72)",
+    backdropFilter: "blur(4px)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 999,
+  },
+  content: {
+    inset: "unset",
+    border: "none",
+    background: "transparent",
+    padding: 0,
+    overflow: "visible",
+  },
+};
+
+const RSVP_MODAL_IMAGE =
+  "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687273/TA_06853_qrfnim.jpg";
+
+const RSVP_MODAL_PATTERN =
+  "https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2F3fbb125eb133dd5345758f9d24f40ce1aa3fb3ca.png?generation=1762677300608336&alt=media";
 
 export default function RsvpSection() {
   const [countdown, setCountdown] = React.useState({
@@ -10,6 +34,7 @@ export default function RsvpSection() {
     minutes: 0,
     seconds: 0,
   });
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   React.useEffect(() => {
     const updateCountdown = () => {
@@ -37,6 +62,13 @@ export default function RsvpSection() {
 
     return () => clearInterval(intervalId);
   }, []);
+
+  React.useEffect(() => {
+    Modal.setAppElement("#root");
+  }, []);
+
+  const openModal = React.useCallback(() => setIsModalOpen(true), []);
+  const closeModal = React.useCallback(() => setIsModalOpen(false), []);
 
   return (
     <div className="ml-auto mr-auto relative h-[728.2px]">
@@ -250,7 +282,13 @@ export default function RsvpSection() {
                         textDecoration: "rgb(63, 92, 132)",
                       }}
                     >
-                      <div className="absolute w-[382.078px] h-10 left-0 top-[298px]">
+                      <button
+                        type="button"
+                        onClick={openModal}
+                        aria-label="Gửi lời nhắn"
+                        className="absolute block w-[382.078px] h-10 left-0 top-[298px] cursor-pointer focus:outline-none"
+                        style={{ border: "none", background: "transparent", padding: 0 }}
+                      >
                         <div className="border size-full overflow-hidden absolute border-[rgb(63,_92,_132)] rounded-[1.75rem]">
                           <div className="size-full pointer-events-none"></div>
                           <div className="table size-full absolute left-0 top-0 text-black text-[16px] leading-[normal]">
@@ -266,7 +304,7 @@ export default function RsvpSection() {
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </button>
                       <div className="absolute w-[382.078px] h-9 left-0 top-0">
                         <div className="border size-full absolute border-[rgb(63,_92,_132)] rounded-[1.25rem]">
                           <div className="size-full pointer-events-none absolute left-0 top-0 rounded-[1.1875rem]"></div>
@@ -360,6 +398,71 @@ export default function RsvpSection() {
                     </form>
                   </motion.div>
                 </div>
+                <Modal
+                  isOpen={isModalOpen}
+                  onRequestClose={closeModal}
+                  style={RSVP_MODAL_STYLES}
+                  contentLabel="Thiệp lời chúc"
+                >
+                  <div className="relative w-[390px] max-w-[90vw]">
+                    <div
+                      className="absolute inset-0 rounded-[32px] opacity-25"
+                      style={{
+                        backgroundImage: `url("${RSVP_MODAL_PATTERN}")`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    ></div>
+                    <div className="relative z-10 rounded-[32px] bg-white/95 px-6 pt-6 pb-8 text-[rgb(63,_92,_132)] shadow-[0_25px_70px_rgba(15,23,42,0.35)]">
+                      <div className="flex items-start justify-between text-[11px] font-semibold tracking-[0.4em] text-[#3a4c6f]">
+                        <span className="text-right leading-4">
+                          BEST <br />
+                          DAY <br />
+                          EVER
+                        </span>
+                        <button
+                          type="button"
+                          aria-label="Đóng modal"
+                          onClick={closeModal}
+                          className="text-[22px] leading-none text-[#1d2a44] transition hover:scale-105"
+                          style={{ border: "none", background: "transparent", padding: 0 }}
+                        >
+                          ×
+                        </button>
+                      </div>
+                      <p
+                        className="mt-4 text-[28px] leading-[34px] text-[#1f3254]"
+                        style={{ fontFamily: '"Times New Roman", serif', fontStyle: "italic" }}
+                      >
+                        Thank you!
+                      </p>
+                      <div className="mt-4 overflow-hidden rounded-[22px] border border-[#dfe4f0]">
+                        <img
+                          src={RSVP_MODAL_IMAGE}
+                          alt="Thiệp cảm ơn"
+                          className="h-[190px] w-full object-cover"
+                        />
+                      </div>
+                      <p className="mt-5 text-center text-[14px] leading-6 text-[#4a5875]">
+                        Những lời chúc này sẽ là động lực rất lớn giúp chúng mình bước vào một cánh
+                        cửa hôn nhân đầy mới mẻ.
+                      </p>
+                      <p className="mt-3 text-center text-[13px] font-semibold tracking-[0.6em] text-[#2b3f63]">
+                        09.03.2025
+                      </p>
+                      <div className="mt-6 flex justify-center">
+                        <button
+                          type="button"
+                          onClick={closeModal}
+                          className="w-full rounded-full border border-[#3f5c84] py-2 text-[13px] font-semibold uppercase tracking-[0.3em] text-[#3f5c84] transition hover:bg-[#3f5c84] hover:text-white"
+                          style={{ background: "transparent" }}
+                        >
+                          Đóng
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Modal>
               </div>
           
   );
