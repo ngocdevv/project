@@ -5,7 +5,7 @@ export default function ThankYouSection() {
     <div className="ml-auto mr-auto relative h-[388.2px]">
       <div className="size-full overflow-hidden pointer-events-none absolute left-0 top-0"></div>
       <div className="h-full ml-auto mr-auto relative">
-        <motion.div
+        {/* <motion.div
           className="fixed w-[149.25px] h-[39.25px] right-[10px] bottom-[15px] mr-[calc(50% - 210px)] z-[90000050]"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -40,7 +40,7 @@ export default function ThankYouSection() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
         <div className="absolute w-[149.25px] h-[39.25px] left-[-298px] top-[-137.2px]">
           <div className="size-full absolute">
             <div className="absolute w-[134px] h-[32.5px] left-0 top-[3.375px]">
