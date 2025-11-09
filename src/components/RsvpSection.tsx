@@ -117,7 +117,7 @@ export default function RsvpSection() {
           guestOf: '',
         });
       } else {
-        console.error('Error submitting RSVP:', await response.text());
+        console.error('Error submitting RSVP:', await response.text()); 
       }
     } catch (error) {
       console.error('Error submitting RSVP:', error);
