@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/herosection.tsx","./src/components/invitationdetailssection.tsx","./src/components/memoriessection.tsx","./src/components/rsvpsection.tsx","./src/components/savethedatesection.tsx","./src/components/thankyousection.tsx","./src/components/timelinesection.tsx"],"version":"5.9.3"}
