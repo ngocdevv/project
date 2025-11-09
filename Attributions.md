@@ -1,0 +1,7 @@
+- UI components reference [shadcn/ui](https://ui.shadcn.com/) and are used under the [MIT license](https://github.com/shadcn-ui/ui/blob/main/LICENSE.md).
+- Animations are powered by [Motion](https://motion.dev/) under the [MIT license](https://github.com/motiondivision/motion/blob/main/LICENSE).
+- Photos are sourced from [Unsplash](https://unsplash.com) under their [permissive license](https://unsplash.com/license):
+  - Hero / cover photo: https://images.unsplash.com/photo-1524504388940-b1c1722653e1
+  - Save-the-date card photo: https://images.unsplash.com/photo-1487412720507-e7ab37603c6f
+  - Couple gallery photos: https://images.unsplash.com/photo-1519681393784-d120267933ba, https://images.unsplash.com/photo-1469474968028-56623f02e42e, https://images.unsplash.com/photo-1500530855697-b586d89ba3ee
+  - Timeline background: https://images.unsplash.com/photo-1730476513367-16fe58a8a653
