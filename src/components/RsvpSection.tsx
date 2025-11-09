@@ -30,6 +30,11 @@ const RSVP_MODAL_PATTERN =
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+// Debug logging - remove in production
+console.log('Supabase URL:', SUPABASE_URL);
+console.log('Supabase Key exists:', !!SUPABASE_ANON_KEY);
+console.log('Supabase Key length:', SUPABASE_ANON_KEY?.length || 0);
+
 export default function RsvpSection() {
   const [countdown, setCountdown] = React.useState({
     days: 0,
@@ -89,6 +94,14 @@ export default function RsvpSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Validate environment variables
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.error('Missing Supabase configuration:', { SUPABASE_URL: !!SUPABASE_URL, SUPABASE_ANON_KEY: !!SUPABASE_ANON_KEY });
+      alert('Lỗi cấu hình: Vui lòng liên hệ quản trị viên');
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch(`${SUPABASE_URL}/rest/v1/rsvp_responses`, {
