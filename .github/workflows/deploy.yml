@@ -46,6 +46,9 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
 
+      - name: Include CNAME in artifact
+        run: cp CNAME dist/CNAME
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
