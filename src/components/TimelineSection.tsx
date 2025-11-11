@@ -94,7 +94,7 @@ export default function TimelineSection({ couplePhoto3 }: TimelineSectionProps) 
                           ></div>
                         </div>
                       </div>
-                      <div className="absolute w-[306px] h-[125.7px] left-12 top-[589px]">
+                      {/* <div className="absolute w-[306px] h-[125.7px] left-12 top-[589px]">
                         <div className="size-full absolute">
                           <div className="absolute w-[306px] left-0 top-0">
                             <p
@@ -122,7 +122,7 @@ export default function TimelineSection({ couplePhoto3 }: TimelineSectionProps) 
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="absolute w-[353.088px] h-[311px] left-[34.5049px] top-[457.6px]">
@@ -150,8 +150,7 @@ export default function TimelineSection({ couplePhoto3 }: TimelineSectionProps) 
                                 textDecoration: "rgb(63, 92, 132)",
                               }}
                             >
-                              Checkin với photobooth và gửi lời chúc
-                              phúc đến CDCR
+                              Gửi lời chúc phúc và lưu lại những khoảnh khắc cùng <br /> Cô dâu và Chú rể
                             </p>
                           </div>
                           <div className="absolute w-[141px] left-[136.088px] top-0">
@@ -203,7 +202,7 @@ export default function TimelineSection({ couplePhoto3 }: TimelineSectionProps) 
                               }}
                             >
                               Cùng nhau chứng kiến khoảnh khắc
-                              thiêng liêng cùng CDCR
+                              thiêng liêng cùng <br /> Cô dâu và Chú rể
                             </p>
                           </div>
                           <div className="absolute w-48 left-[129.167px] top-0">
@@ -254,8 +253,7 @@ export default function TimelineSection({ couplePhoto3 }: TimelineSectionProps) 
                                 textDecoration: "rgb(63, 92, 132)",
                               }}
                             >
-                              Cùng nhau ăn tiệc và nâng ly chúc mừng
-                              CDCR
+                              Cùng nhau ăn tiệc và nâng ly chúc mừng Cô dâu và Chú rể
                             </p>
                           </div>
                           <div className="absolute w-[130px] left-[132.544px] top-0">

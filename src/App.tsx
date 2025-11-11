@@ -10,9 +10,9 @@ const weddingHeroImage =
   "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687272/TA_05002_dyocdq.jpg";
 const saveDateImage =
   "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687274/TA_04895_xwifth.jpg";
-const couplePhoto1 =
-  "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687276/TA_06367_rj00ra.jpg";
 const couplePhoto2 =
+  "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687276/TA_06367_rj00ra.jpg";
+const couplePhoto1 =
   "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687272/TA_06400_n7fm8g.jpg";
 const couplePhoto3 =
   "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687273/TA_06853_qrfnim.jpg";
