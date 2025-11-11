@@ -50,6 +50,7 @@ export default function RsvpSection() {
     rsvpStatus: '',
     guestCount: '',
     guestOf: '',
+    transportation: '',
   });
 
   React.useEffect(() => {
@@ -117,6 +118,7 @@ export default function RsvpSection() {
           rsvp_status: formData.rsvpStatus,
           guest_count: parseInt(formData.guestCount),
           guest_of: formData.guestOf,
+          transportation: formData.transportation,
         }),
       });
 
@@ -128,6 +130,7 @@ export default function RsvpSection() {
           rsvpStatus: '',
           guestCount: '',
           guestOf: '',
+          transportation: '',
         });
       } else {
         console.error('Error submitting RSVP:', await response.text()); 
@@ -341,7 +344,7 @@ export default function RsvpSection() {
           </p>
         </motion.div>
         <motion.div
-          className="absolute w-[382.078px] h-[338px] left-[19.5px] top-[124.8px]"
+          className="absolute w-[382.078px] h-[390px] left-[19.5px] top-[124.8px]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -359,7 +362,7 @@ export default function RsvpSection() {
               type="submit"
               disabled={isSubmitting}
               aria-label="Gửi lời nhắn"
-              className="absolute block w-[382.078px] h-10 left-0 top-[298px] cursor-pointer focus:outline-none disabled:opacity-50"
+              className="absolute block w-[382.078px] h-10 left-0 top-[345px] cursor-pointer focus:outline-none disabled:opacity-50"
               style={{ border: "none", background: "transparent", padding: 0 }}
             >
               <div className="border size-full overflow-hidden absolute border-[rgb(63,_92,_132)] rounded-[1.75rem]">
@@ -488,6 +491,33 @@ export default function RsvpSection() {
                     </option>
                     <option value="groom">
                       Khách mời chú rể
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="absolute w-[382.078px] h-[35px] left-0 top-[295px]">
+              <div className="border size-full absolute border-[rgb(63,_92,_132)] rounded-[1.25rem]">
+                <div className="size-full pointer-events-none absolute left-0 top-0 rounded-[1.1875rem]"></div>
+                <div className="size-full absolute pt-0 pr-[5px] pb-0 pl-[5px]">
+                  <select
+                    name="transportation"
+                    value={formData.transportation}
+                    onChange={handleInputChange}
+                    className="items-center bg-no-repeat inline-block size-full max-h-full max-w-full min-h-full min-w-full whitespace-pre bg-black/0 bg-[position:right_8px_50%] bg-size-[9px_6px] pt-0 pr-6 pb-0 pl-[5px] focus:outline-none"
+                    required
+                  >
+                    <option value="">
+                      Phương tiện di chuyển
+                    </option>
+                    <option value="Tự di chuyển">
+                      Tự di chuyển
+                    </option>
+                    <option value="Xe đưa rước Q7 15h30">
+                      Xe đưa rước Q7 15h30
+                    </option>
+                    <option value="Xe đưa rước Công viên Lê Văn Tám 15h30">
+                      Xe đưa rước Công viên Lê Văn Tám 15h30
                     </option>
                   </select>
                 </div>
