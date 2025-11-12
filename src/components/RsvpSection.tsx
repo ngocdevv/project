@@ -41,6 +41,11 @@ const getNormalizedPathname = () => {
   return trimmedPath === "" ? "/" : trimmedPath;
 };
 
+const getDisabledFieldStyles = (disabled: boolean): React.CSSProperties => ({
+  opacity: disabled ? 0.45 : 1,
+  transition: "opacity 0.2s ease-in-out",
+});
+
 export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
   const [countdown, setCountdown] = React.useState({
     days: 0,
@@ -494,7 +499,10 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
                 </div>
               </div>
             </div>
-            <div className="absolute w-[382.078px] h-[35px] left-0 top-[205px]">
+            <div
+              className="absolute w-[382.078px] h-[35px] left-0 top-[205px]"
+              style={getDisabledFieldStyles(!isAttending)}
+            >
               <div className="border size-full absolute border-[rgb(63,_92,_132)] rounded-[1.25rem]">
                 <div className="size-full pointer-events-none absolute left-0 top-0 rounded-[1.1875rem]"></div>
                 <div className="size-full absolute pt-0 pr-[5px] pb-0 pl-[5px]">
@@ -525,7 +533,10 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
                 </div>
               </div>
             </div>
-            <div className="absolute w-[382.078px] h-[35px] left-0 top-[250px]">
+            <div
+              className="absolute w-[382.078px] h-[35px] left-0 top-[250px]"
+              style={getDisabledFieldStyles(!isAttending)}
+            >
               <div className="border size-full absolute border-[rgb(63,_92,_132)] rounded-[1.25rem]">
                 <div className="size-full pointer-events-none absolute left-0 top-0 rounded-[1.1875rem]"></div>
                 <div className="size-full absolute pt-0 pr-[5px] pb-0 pl-[5px]">
@@ -551,7 +562,10 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
               </div>
             </div>
             {isBrideRoute && (
-              <div className="absolute w-[382.078px] h-[35px] left-0 top-[295px]">
+              <div
+                className="absolute w-[382.078px] h-[35px] left-0 top-[295px]"
+                style={getDisabledFieldStyles(!isAttending)}
+              >
                 <div className="border size-full absolute border-[rgb(63,_92,_132)] rounded-[1.25rem]">
                   <div className="size-full pointer-events-none absolute left-0 top-0 rounded-[1.1875rem]"></div>
                   <div className="size-full absolute pt-0 pr-[5px] pb-0 pl-[5px]">
