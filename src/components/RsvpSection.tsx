@@ -32,6 +32,15 @@ const RSVP_MODAL_PATTERN =
 
 const GOOGLE_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxSCD30mvKnlZ0CStUMXofIv1Iz1EN3RCQdj2Km1lGXKPC1aGcjfMn6NVXBIF7qnw3caQ/exec";
 
+const getNormalizedPathname = () => {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  const trimmedPath = window.location.pathname.replace(/\/+$/, "");
+  return trimmedPath === "" ? "/" : trimmedPath;
+};
+
 export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
   const [countdown, setCountdown] = React.useState({
     days: 0,
@@ -49,6 +58,9 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
     guestOf: '',
     transportation: '',
   });
+  const isBrideRoute = getNormalizedPathname() === "/bride";
+  const isAttending = formData.rsvpStatus === 'yes';
+  const submitButtonTop = isBrideRoute ? 345 : 295;
 
   const weddingTimestamp = React.useMemo(() => {
     const time = new Date(countdownDate).getTime();
@@ -92,10 +104,22 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData(prev => {
+      if (name === 'rsvpStatus') {
+        return {
+          ...prev,
+          rsvpStatus: value,
+          guestCount: value === 'yes' ? prev.guestCount : '',
+          guestOf: value === 'yes' ? prev.guestOf : '',
+          transportation: value === 'yes' ? prev.transportation : '',
+        };
+      }
+
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -110,7 +134,16 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
       transportation: formData.transportation,
     };
 
-    const hasEmptyFields = Object.values(sanitizedData).some(value => !value);
+    const requiredFields: Array<keyof typeof sanitizedData> = ['name', 'message', 'rsvpStatus'];
+
+    if (isAttending) {
+      requiredFields.push('guestCount', 'guestOf');
+      if (isBrideRoute) {
+        requiredFields.push('transportation');
+      }
+    }
+
+    const hasEmptyFields = requiredFields.some(field => !sanitizedData[field]);
 
     if (hasEmptyFields) {
       alert('Vui lòng điền đầy đủ thông tin trước khi gửi.');
@@ -124,25 +157,33 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
       return;
     }
 
-    const guestCount = parseInt(sanitizedData.guestCount, 10);
+    const guestCount = sanitizedData.guestCount
+      ? parseInt(sanitizedData.guestCount, 10)
+      : NaN;
 
-    if (Number.isNaN(guestCount)) {
+    if (isAttending && Number.isNaN(guestCount)) {
       alert('Số lượng khách tham dự không hợp lệ.');
       return;
     }
 
+    const normalizedData = Object.keys(sanitizedData).reduce((acc, key) => {
+      const typedKey = key as keyof typeof sanitizedData;
+      acc[typedKey] = sanitizedData[typedKey] || 'none';
+      return acc;
+    }, {} as typeof sanitizedData);
+
     setIsSubmitting(true);
-    console.log('Submitting RSVP:', { sanitizedData, guestCount });
+    console.log('Submitting RSVP:', { normalizedData, guestCount });
 
     try {
       const form = new FormData();
       form.append('data', JSON.stringify({
-        name: sanitizedData.name,
-        message: sanitizedData.message,
-        rsvpStatus: sanitizedData.rsvpStatus,
-        guestCount,
-        guestOf: sanitizedData.guestOf,
-        transportation: sanitizedData.transportation,
+        name: normalizedData.name,
+        message: normalizedData.message,
+        rsvpStatus: normalizedData.rsvpStatus,
+        guestCount: Number.isNaN(guestCount) ? '0' : guestCount,
+        guestOf: normalizedData.guestOf || 'none',
+        transportation: normalizedData.transportation || 'none',
       }));
       const response = await fetch(GOOGLE_SHEETS_ENDPOINT, {
         method: 'POST',
@@ -373,8 +414,8 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
               type="submit"
               disabled={isSubmitting}
               aria-label="Gửi lời nhắn"
-              className="absolute block w-[382.078px] h-10 left-0 top-[345px] cursor-pointer focus:outline-none disabled:opacity-50"
-              style={{ border: "none", background: "transparent", padding: 0 }}
+              className="absolute block w-[382.078px] h-10 left-0 cursor-pointer focus:outline-none disabled:opacity-50"
+              style={{ border: "none", background: "transparent", padding: 0, top: submitButtonTop }}
             >
               <div className="border size-full overflow-hidden absolute border-[rgb(63,_92,_132)] rounded-[1.75rem]">
                 <div className="size-full pointer-events-none"></div>
@@ -462,7 +503,8 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
                     value={formData.guestCount}
                     onChange={handleInputChange}
                     className="items-center bg-no-repeat inline-block size-full max-h-full max-w-full min-h-full min-w-full whitespace-pre bg-black/0 bg-[position:right_8px_50%] bg-size-[9px_6px] pt-0 pr-6 pb-0 pl-[5px] focus:outline-none"
-                    required
+                    disabled={!isAttending}
+                    required={isAttending}
                   >
                     <option value="">
                       Bạn tham dự cùng ai?
@@ -492,7 +534,8 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
                     value={formData.guestOf}
                     onChange={handleInputChange}
                     className="items-center bg-no-repeat inline-block size-full max-h-full max-w-full min-h-full min-w-full whitespace-pre bg-black/0 bg-[position:right_8px_50%] bg-size-[9px_6px] pt-0 pr-6 pb-0 pl-[5px] focus:outline-none"
-                    required
+                    disabled={!isAttending}
+                    required={isAttending}
                   >
                     <option value="">
                       Bạn là khách mời của ai?
@@ -507,33 +550,36 @@ export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
                 </div>
               </div>
             </div>
-            <div className="absolute w-[382.078px] h-[35px] left-0 top-[295px]">
-              <div className="border size-full absolute border-[rgb(63,_92,_132)] rounded-[1.25rem]">
-                <div className="size-full pointer-events-none absolute left-0 top-0 rounded-[1.1875rem]"></div>
-                <div className="size-full absolute pt-0 pr-[5px] pb-0 pl-[5px]">
-                  <select
-                    name="transportation"
-                    value={formData.transportation}
-                    onChange={handleInputChange}
-                    className="items-center bg-no-repeat inline-block size-full max-h-full max-w-full min-h-full min-w-full whitespace-pre bg-black/0 bg-[position:right_8px_50%] bg-size-[9px_6px] pt-0 pr-6 pb-0 pl-[5px] focus:outline-none"
-                    required
-                  >
-                    <option value="">
-                      Phương tiện di chuyển
-                    </option>
-                    <option value="Tự di chuyển">
-                      Tự di chuyển
-                    </option>
-                    <option value="Xe đưa rước Q7 15h30">
-                      Xe đưa rước Q7 15h30
-                    </option>
-                    <option value="Xe đưa rước Công viên Lê Văn Tám 15h30">
-                      Xe đưa rước Công viên Lê Văn Tám 15h30
-                    </option>
-                  </select>
+            {isBrideRoute && (
+              <div className="absolute w-[382.078px] h-[35px] left-0 top-[295px]">
+                <div className="border size-full absolute border-[rgb(63,_92,_132)] rounded-[1.25rem]">
+                  <div className="size-full pointer-events-none absolute left-0 top-0 rounded-[1.1875rem]"></div>
+                  <div className="size-full absolute pt-0 pr-[5px] pb-0 pl-[5px]">
+                    <select
+                      name="transportation"
+                      value={formData.transportation}
+                      onChange={handleInputChange}
+                      className="items-center bg-no-repeat inline-block size-full max-h-full max-w-full min-h-full min-w-full whitespace-pre bg-black/0 bg-[position:right_8px_50%] bg-size-[9px_6px] pt-0 pr-6 pb-0 pl-[5px] focus:outline-none"
+                      disabled={!isAttending}
+                      required={isAttending}
+                    >
+                      <option value="">
+                        Phương tiện di chuyển
+                      </option>
+                      <option value="Tự di chuyển">
+                        Tự di chuyển
+                      </option>
+                      <option value="Xe đưa rước Q7 15h30">
+                        Xe đưa rước Q7 15h30
+                      </option>
+                      <option value="Xe đưa rước Công viên Lê Văn Tám 15h30">
+                        Xe đưa rước Công viên Lê Văn Tám 15h30
+                      </option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </form>
         </motion.div>
       </div>
