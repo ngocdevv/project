@@ -2,9 +2,19 @@ import { motion } from "motion/react";
 
 type HeroSectionProps = {
   image: string;
+  heroLabel: string;
+  heroDate: string;
+  names: [string, string];
 };
 
-export default function HeroSection({ image }: HeroSectionProps) {
+export default function HeroSection({
+  image,
+  heroLabel,
+  heroDate,
+  names,
+}: HeroSectionProps) {
+  const [primaryName, secondaryName] = names;
+
   return (
     <div className="ml-auto mr-auto relative h-[630px]">
       <div className="size-full overflow-hidden pointer-events-none absolute left-0 top-0"></div>
@@ -51,7 +61,8 @@ export default function HeroSection({ image }: HeroSectionProps) {
                   textDecoration: "rgb(255, 255, 255)",
                 }}
               >
-                HỌC &nbsp;
+                {primaryName}
+                &nbsp;
               </h3>
             </motion.div>
             <motion.div
@@ -67,7 +78,8 @@ export default function HeroSection({ image }: HeroSectionProps) {
                   textDecoration: "rgb(255, 255, 255)",
                 }}
               >
-                NHƯ &nbsp;
+                {secondaryName}
+                &nbsp;
               </h3>
             </motion.div>
             <motion.div

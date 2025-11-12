@@ -1,8 +1,20 @@
+import type { WeddingContent } from "../lib/weddingContent";
+
 type TimelineSectionProps = {
   couplePhoto3: string;
+  schedule: WeddingContent["schedule"];
 };
 
-export default function TimelineSection({ couplePhoto3 }: TimelineSectionProps) {
+const SCHEDULE_ICONS = [
+  "https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2F9495b544ec8394f4a756d6629449e8d55a497453.png?generation=1762677300397232&alt=media",
+  "https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2F66d219ed747fba5c4bf9abaf2ff5d2bdff6b8f6c.png?generation=1762677300419704&alt=media",
+  "https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2Fc23bf8432d2750f3faa0c48c933e5ce4f0cb7b62.png?generation=1762677300438043&alt=media",
+];
+
+export default function TimelineSection({
+  couplePhoto3,
+  schedule,
+}: TimelineSectionProps) {
   return (
     <div className="ml-auto mr-auto relative h-[1171.2px]">
                 <div className="size-full overflow-hidden pointer-events-none absolute left-0 top-0"></div>
@@ -125,162 +137,63 @@ export default function TimelineSection({ couplePhoto3 }: TimelineSectionProps) 
                       </div> */}
                     </div>
                   </div>
-                  <div className="absolute w-[353.088px] h-[311px] left-[34.5049px] top-[457.6px]">
-                    <div className="size-full absolute">
-                      <div className="absolute w-[353.088px] h-[83px] left-0 top-0">
-                        <div className="size-full absolute">
-                          <div className="absolute w-[76px] left-[54.088px] top-[23.5px]">
-                            <p
-                              className="bg-center bg-cover inline-block text-center w-full text-[rgb(63,_92,_132)] text-[19px] tracking-[1px] leading-[30.4px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCNZWRpdWudHRm",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              17:00
-                            </p>
-                          </div>
-                          <div className="absolute w-[217px] left-[136.088px] top-[29px]">
-                            <p
-                              className="bg-center bg-cover inline-block text-left w-full text-[rgb(63,_92,_132)] text-[17px] leading-[27.2px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCSZWdbGFyLnRZg",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              Gửi lời chúc phúc và lưu lại những khoảnh khắc cùng <br /> Cô dâu và Chú rể
-                            </p>
-                          </div>
-                          <div className="absolute w-[141px] left-[136.088px] top-0">
-                            <p
-                              className="bg-center bg-cover inline-block text-left w-full text-[rgb(63,_92,_132)] text-[17px] tracking-[1px] leading-[27.2px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCNZWRpdWudHRm",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              ĐÓN KHÁCH
-                            </p>
-                          </div>
-                          <div className="absolute w-[58.088px] h-[57.627px] left-0 top-[8.686px]">
-                            <div className="size-full overflow-hidden absolute">
-                              <div
-                                className="bg-origin-content bg-no-repeat bg-cover ml-auto mr-auto pointer-events-none absolute w-[58.088px] h-[57.627px] left-0 top-0"
-                                style={{
-                                  backgroundImage:
-                                    'url("https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2F9495b544ec8394f4a756d6629449e8d55a497453.png?generation=1762677300397232&alt=media")',
-                                }}
-                              ></div>
+                  <div className="absolute w-[353.088px] left-[34.5049px] top-[457.6px]">
+                    <div className="flex flex-col gap-8">
+                      {schedule.map((item, index) => {
+                        const icon =
+                          SCHEDULE_ICONS[index] ??
+                          SCHEDULE_ICONS[SCHEDULE_ICONS.length - 1];
+
+                        return (
+                          <div
+                            key={`${item.time}-${item.label}`}
+                            className="flex items-start gap-4"
+                          >
+                            <div className="w-[58px] h-[58px] relative">
+                              <div className="size-full overflow-hidden absolute">
+                                <div
+                                  className="bg-origin-content bg-no-repeat bg-cover ml-auto mr-auto pointer-events-none absolute w-full h-full left-0 top-0"
+                                  style={{
+                                    backgroundImage: `url("${icon}")`,
+                                  }}
+                                ></div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="absolute w-[346.167px] h-[82px] left-[6.921px] top-[113px]">
-                        <div className="size-full absolute">
-                          <div className="absolute w-[76px] left-[47.167px] top-[21.167px]">
-                            <p
-                              className="bg-center bg-cover inline-block text-center w-full text-[rgb(63,_92,_132)] text-[19px] tracking-[1px] leading-[30.4px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCNZWRpdWudHRm",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              18:00
-                            </p>
-                          </div>
-                          <div className="absolute w-[217px] left-[129.167px] top-7">
-                            <p
-                              className="bg-center bg-cover inline-block text-left w-full text-[rgb(63,_92,_132)] text-[17px] leading-[27.2px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCSZWdbGFyLnRZg",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              Cùng nhau chứng kiến khoảnh khắc
-                              thiêng liêng cùng <br /> Cô dâu và Chú rể
-                            </p>
-                          </div>
-                          <div className="absolute w-48 left-[129.167px] top-0">
-                            <p
-                              className="bg-center bg-cover inline-block text-left uppercase w-full text-[rgb(63,_92,_132)] text-[17px] tracking-[1px] leading-[27.2px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCNZWRpdWudHRm",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              LÀM LỄ
-                            </p>
-                          </div>
-                          <div className="absolute w-[51.167px] h-[51.167px] left-0 top-[10.583px]">
-                            <div className="size-full overflow-hidden absolute">
-                              <div
-                                className="bg-origin-content bg-no-repeat bg-cover ml-auto mr-auto pointer-events-none absolute w-[51.167px] h-[51.167px] left-0 top-0"
+                            <div className="flex-1">
+                              <p
+                                className="bg-center bg-cover inline-block text-left uppercase w-full text-[rgb(63,_92,_132)] text-[17px] tracking-[1px] leading-[27.2px]"
                                 style={{
-                                  backgroundImage:
-                                    'url("https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2F66d219ed747fba5c4bf9abaf2ff5d2bdff6b8f6c.png?generation=1762677300419704&alt=media")',
+                                  fontFamily:
+                                    "RUJHYXJhbWuZCNZWRpdWudHRm",
+                                  textDecoration: "rgb(63, 92, 132)",
                                 }}
-                              ></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="absolute w-[349.544px] h-[84px] left-[3.544px] top-[227px]">
-                        <div className="size-full absolute">
-                          <div className="absolute w-[76px] left-[50.544px] top-[23.833px]">
-                            <p
-                              className="bg-center bg-cover inline-block text-center w-full text-[rgb(63,_92,_132)] text-[19px] tracking-[1px] leading-[30.4px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCNZWRpdWudHRm",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              18:30
-                            </p>
-                          </div>
-                          <div className="absolute w-[217px] left-[132.544px] top-[30px]">
-                            <p
-                              className="bg-center bg-cover inline-block text-left w-full text-[rgb(63,_92,_132)] text-[17px] leading-[27.2px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCSZWdbGFyLnRZg",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              Cùng nhau ăn tiệc và nâng ly chúc mừng Cô dâu và Chú rể
-                            </p>
-                          </div>
-                          <div className="absolute w-[130px] left-[132.544px] top-0">
-                            <p
-                              className="bg-center bg-cover inline-block text-left uppercase w-full text-[rgb(63,_92,_132)] text-[17px] tracking-[1px] leading-[27.2px]"
-                              style={{
-                                fontFamily:
-                                  "RUJHYXJhbWuZCNZWRpdWudHRm",
-                                textDecoration: "rgb(63, 92, 132)",
-                              }}
-                            >
-                              KHAI TIỆC
-                            </p>
-                          </div>
-                          <div className="absolute w-[58.377px] h-[58.377px] left-0 top-[12.333px]">
-                            <div className="size-full overflow-hidden absolute">
-                              <div
-                                className="bg-origin-content bg-no-repeat bg-cover ml-auto mr-auto pointer-events-none absolute w-[58.377px] h-[58.377px] left-0 top-0"
+                              >
+                                {item.label}
+                              </p>
+                              <p
+                                className="bg-center bg-cover inline-block text-left w-full text-[rgb(63,_92,_132)] text-[17px] leading-[27.2px]"
                                 style={{
-                                  backgroundImage:
-                                    'url("https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2Fc23bf8432d2750f3faa0c48c933e5ce4f0cb7b62.png?generation=1762677300438043&alt=media")',
+                                  fontFamily:
+                                    "RUJHYXJhbWuZCSZWdbGFyLnRZg",
+                                  textDecoration: "rgb(63, 92, 132)",
                                 }}
-                              ></div>
+                              >
+                                {item.description}
+                              </p>
                             </div>
+                            <p
+                              className="bg-center bg-cover inline-block text-right w-[70px] text-[rgb(63,_92,_132)] text-[19px] tracking-[1px] leading-[30.4px]"
+                              style={{
+                                fontFamily:
+                                  "RUJHYXJhbWuZCNZWRpdWudHRm",
+                                textDecoration: "rgb(63, 92, 132)",
+                              }}
+                            >
+                              {item.time}
+                            </p>
                           </div>
-                        </div>
-                      </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

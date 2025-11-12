@@ -1,3 +1,5 @@
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
+
 import HeroSection from "./components/HeroSection";
 import InvitationDetailsSection from "./components/InvitationDetailsSection";
 import MemoriesSection from "./components/MemoriesSection";
@@ -5,6 +7,12 @@ import RsvpSection from "./components/RsvpSection";
 import SaveTheDateSection from "./components/SaveTheDateSection";
 import ThankYouSection from "./components/ThankYouSection";
 import TimelineSection from "./components/TimelineSection";
+import {
+  defaultWeddingVariant,
+  getWeddingContent,
+  isWeddingVariant,
+  type WeddingVariant,
+} from "./lib/weddingContent";
 
 const weddingHeroImage =
   "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687272/TA_05002_dyocdq.jpg";
@@ -17,7 +25,13 @@ const couplePhoto1 =
 const couplePhoto3 =
   "https://res.cloudinary.com/dgjkfed2m/image/upload/v1762687273/TA_06853_qrfnim.jpg";
 
-export default function App() {
+function WeddingPage({ variant }: { variant: WeddingVariant }) {
+  const content = getWeddingContent(variant);
+  const [primaryCouplePhoto, secondaryCouplePhoto] =
+    variant === "groom"
+      ? [couplePhoto1, couplePhoto2]
+      : [couplePhoto2, couplePhoto1];
+
   return (
     <div
       className="text-black text-[16px] leading-[normal]"
@@ -33,15 +47,27 @@ export default function App() {
         style={{ fontFamily: '"Open Sans", sans-serif' }}
       >
         <div className="ml-auto mr-auto min-h-full overflow-hidden w-[420px]">
-          <HeroSection image={weddingHeroImage} />
-          <SaveTheDateSection image={saveDateImage} />
-          <InvitationDetailsSection
-            couplePhoto1={couplePhoto1}
-            couplePhoto2={couplePhoto2}
+          <HeroSection
+            image={weddingHeroImage}
+            heroLabel={content.hero.label}
+            heroDate={content.hero.date}
+            names={content.hero.names}
           />
-          <TimelineSection couplePhoto3={couplePhoto3} />
+          <SaveTheDateSection
+            image={saveDateImage}
+            announcement={content.announcement}
+          />
+          <InvitationDetailsSection
+            couplePhoto1={primaryCouplePhoto}
+            couplePhoto2={secondaryCouplePhoto}
+            content={content.invitation}
+          />
+          <TimelineSection
+            couplePhoto3={couplePhoto3}
+            schedule={content.schedule}
+          />
           <MemoriesSection />
-          <RsvpSection />
+          <RsvpSection countdownDate={content.countdownDate} />
           <ThankYouSection />
           <div className="ml-auto mr-auto relative h-0">
             <div className="h-full ml-auto mr-auto relative z-[90000070]"></div>
@@ -49,5 +75,32 @@ export default function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+function VariantRoute() {
+  const params = useParams<{ variant?: string }>();
+  const variantParam = params.variant ?? defaultWeddingVariant;
+
+  if (!isWeddingVariant(variantParam)) {
+    return <Navigate to={`/${defaultWeddingVariant}`} replace />;
+  }
+
+  return <WeddingPage variant={variantParam} />;
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={<Navigate to={`/${defaultWeddingVariant}`} replace />}
+      />
+      <Route path="/:variant" element={<VariantRoute />} />
+      <Route
+        path="*"
+        element={<Navigate to={`/${defaultWeddingVariant}`} replace />}
+      />
+    </Routes>
   );
 }

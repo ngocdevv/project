@@ -2,10 +2,17 @@ import { motion } from "motion/react";
 
 type SaveTheDateSectionProps = {
   image: string;
+  announcement: {
+    gratitude: string;
+    messageLead: string;
+    eventLabel: string;
+    namesLine: string;
+  };
 };
 
 export default function SaveTheDateSection({
   image,
+  announcement,
 }: SaveTheDateSectionProps) {
   return (
     <div className="ml-auto mr-auto relative h-[675.2px]">
@@ -69,9 +76,10 @@ export default function SaveTheDateSection({
                 style={{
                   fontFamily: "RUJHYXJhbWuZCNZWRpdWudHRm",
                   textDecoration: "rgb(63, 92, 132)",
+                  whiteSpace: "pre-line",
                 }}
               >
-                QUYẾT ĐỊNH BÊN NHAU &nbsp; TRỌN ĐỜI. &nbsp;
+                {announcement.gratitude}
               </p>
             </motion.div>
             <motion.div
@@ -88,22 +96,11 @@ export default function SaveTheDateSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                Save the date
+                {announcement.eventLabel}
               </p>
             </motion.div>
           </div>
         </motion.div>
-        <div className="absolute w-[207px] left-[-392.5px] top-[178.5px]">
-          <p
-            className="bg-center bg-cover inline-block text-center w-full text-[rgb(63,_92,_132)] text-[35px] tracking-[1px] leading-[49px]"
-            style={{
-              fontFamily: "QSTUSQUUSUGQUULUFRElVTSUVEY",
-              textDecoration: "rgb(63, 92, 132)",
-            }}
-          >
-            <br />
-          </p>
-        </div>
         <motion.div
           className="absolute w-[291px] h-[356.351px] left-[64.5px] top-[252.1px]"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -118,16 +115,25 @@ export default function SaveTheDateSection({
             }}
           ></div>
         </motion.div>
-        <div className="absolute w-[207px] left-[106.5px] top-[178.5px]">
+        <div className="absolute w-[260px] left-[80px] top-[178.5px]">
           <p
-            className="bg-center bg-cover inline-block text-center w-full text-[rgb(63,_92,_132)] text-[35px] tracking-[1px] leading-[49px]"
+            className="bg-center bg-cover inline-block text-center w-full text-[rgb(63,_92,_132)] text-[18px] tracking-[1px] leading-[28px]"
             style={{
               fontFamily: "QSTUSQUUSUGQUULUFRElVTSUVEY",
               textDecoration: "rgb(63, 92, 132)",
             }}
           >
-            <span className="text-center"></span>
-            <br />
+            {announcement.messageLead}
+          </p>
+          <p
+            className="bg-center bg-cover inline-block text-center w-full text-[rgb(63,_92,_132)] text-[32px] leading-[48px]"
+            style={{
+              fontFamily:
+                "MUZUViWSVAtTWuclldXItTGEtRGbGFpcUtUmVndWxhcivdGY",
+              textDecoration: "rgb(63, 92, 132)",
+            }}
+          >
+            {announcement.namesLine}
           </p>
         </div>
       </div>

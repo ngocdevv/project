@@ -1,14 +1,58 @@
 import { motion } from "motion/react";
+import type { WeddingContent } from "../lib/weddingContent";
+
+type CalendarCoordinates = { left: number; top: number };
+
+// Coordinates for the hand-crafted calendar artwork so we can align overlays.
+const calendarDayPositions: Record<number, CalendarCoordinates> = {
+  17: { left: 223, top: 184.5 },
+  24: { left: 223, top: 221.5 },
+};
+
+const DEFAULT_CALENDAR_DAY = 17;
+const baseHeartPosition: CalendarCoordinates = { left: 215.6, top: 175.4 };
+const referenceDay = calendarDayPositions[DEFAULT_CALENDAR_DAY];
+const heartAnchorOffset: CalendarCoordinates = referenceDay
+  ? {
+      left: baseHeartPosition.left - referenceDay.left,
+      top: baseHeartPosition.top - referenceDay.top,
+    }
+  : { left: 0, top: 0 };
+
+const getHeartPositionForDay = (day?: number): CalendarCoordinates => {
+  if (!day) {
+    return baseHeartPosition;
+  }
+
+  const coordinates = calendarDayPositions[day];
+  if (!coordinates) {
+    return baseHeartPosition;
+  }
+
+  return {
+    left: coordinates.left + heartAnchorOffset.left,
+    top: coordinates.top + heartAnchorOffset.top,
+  };
+};
 
 type InvitationDetailsSectionProps = {
   couplePhoto1: string;
   couplePhoto2: string;
+  content: WeddingContent["invitation"];
 };
 
 export default function InvitationDetailsSection({
   couplePhoto1,
   couplePhoto2,
+  content,
 }: InvitationDetailsSectionProps) {
+  const { inviteLead, groomName, brideName, ceremony, reception, households } =
+    content;
+  const highlightDay = Number.parseInt(ceremony.day, 10);
+  const heartPosition = getHeartPositionForDay(
+    Number.isNaN(highlightDay) ? undefined : highlightDay,
+  );
+
   return (
     <div className="ml-auto mr-auto relative h-[1740.2px]">
       <div className="size-full overflow-hidden pointer-events-none absolute left-0 top-0"></div>
@@ -174,8 +218,7 @@ export default function InvitationDetailsSection({
               textDecoration: "rgb(63, 92, 132)",
             }}
           >
-            Thân mời tới dự lễ cưới thân mật của chúng tôi
-            &nbsp;
+            {inviteLead}
           </p>
         </motion.div>
         <motion.div
@@ -192,7 +235,7 @@ export default function InvitationDetailsSection({
               textDecoration: "rgb(63, 92, 132)",
             }}
           >
-            quốc học
+            {groomName}
           </p>
         </motion.div>
         <motion.div
@@ -209,7 +252,7 @@ export default function InvitationDetailsSection({
               textDecoration: "rgb(63, 92, 132)",
             }}
           >
-            ái như
+            {brideName}
           </p>
         </motion.div>
         <motion.div
@@ -244,7 +287,9 @@ export default function InvitationDetailsSection({
               textDecoration: "rgb(63, 92, 132)",
             }}
           >
-            hôn lễ được tổ chức &nbsp; <br /> vào lúc 17 giờ &nbsp;
+            {ceremony.headline}
+            <br />
+            {ceremony.timeLabel} 
           </p>
         </motion.div>
         <motion.div
@@ -263,7 +308,9 @@ export default function InvitationDetailsSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                (Tức ngày 29 tháng 11 năm Ất Tỵ) &nbsp;
+                {/* {ceremony.addressLine} */}
+                {/* <br /> */}
+                {ceremony.lunarDate}
               </p>
             </div>
             <div className="absolute w-[143px] left-[76.75px] top-0">
@@ -274,7 +321,7 @@ export default function InvitationDetailsSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                thứ bảy
+                {ceremony.dayOfWeek}
               </p>
             </div>
             <div className="absolute w-[91px] left-[101.5px] top-[23.5px]">
@@ -286,7 +333,7 @@ export default function InvitationDetailsSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                17
+                {ceremony.day}
               </p>
             </div>
             <div className="absolute w-[117px] h-[53px] left-0 top-[37px]">
@@ -311,7 +358,7 @@ export default function InvitationDetailsSection({
                       textDecoration: "rgb(63, 92, 132)",
                     }}
                   >
-                    tháng 1 &nbsp;
+                    {ceremony.month}
                   </p>
                 </div>
                 <div className="absolute w-24 left-[9.5px] top-9">
@@ -349,7 +396,7 @@ export default function InvitationDetailsSection({
                       textDecoration: "rgb(63, 92, 132)",
                     }}
                   >
-                    năm 2026 &nbsp;
+                    {ceremony.year}
                   </p>
                 </div>
                 <div className="absolute w-24 left-[9.5px] top-9">
@@ -381,7 +428,8 @@ export default function InvitationDetailsSection({
               textDecoration: "rgb(63, 92, 132)",
             }}
           >
-            tại sảnh trệt PENSEÉ <br /> Nhà hàng Golden Lotus &nbsp;
+            {reception.headingLines[0]}
+            <br /> {reception.headingLines[1]}
           </p>
         </motion.div>
         <motion.div
@@ -399,11 +447,11 @@ export default function InvitationDetailsSection({
             }}
           >
             <br />
-            105B Hà Huy Giáp, Phường Trấn Biên, Đồng Nai
+            {reception.address}
           </p>
         </motion.div>
         <motion.a
-          href="https://maps.app.goo.gl/CZVJz82U6Jqn3dNV6"
+          href={reception.mapLink}
           className="block absolute w-[159px] h-[29px] left-[134px] top-[1675px]"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -683,7 +731,10 @@ export default function InvitationDetailsSection({
                 31 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[42px] h-[42px] left-[215.6px] top-[175.4px]">
+            <div
+              className="absolute w-[42px] h-[42px]"
+              style={heartPosition}
+            >
               <div className="size-full overflow-hidden absolute">
                 <div
                   className="bg-origin-content bg-no-repeat bg-cover ml-auto mr-auto pointer-events-none absolute w-[42px] h-[42px] -left-0.5 top-0"
@@ -1200,17 +1251,6 @@ export default function InvitationDetailsSection({
                     <br />
                   </p>
                 </div>
-                <div className="absolute w-[43.8px] h-[43.8px] left-[270.267px] top-[222.5px]">
-                  <div className="size-full overflow-hidden absolute">
-                    <div
-                      className="bg-origin-content bg-no-repeat bg-cover ml-auto mr-auto pointer-events-none absolute w-[43.8px] h-[43.8px] left-0 top-0"
-                      style={{
-                        backgroundImage:
-                          'url("https://storage.googleapis.com/download/storage/v1/b/prd-shared-services.firebasestorage.app/o/h2m-assets%2Fa8d9d02812f7b64b1ae25976b88e487734ce5c77.png?generation=1762677300374863&alt=media")',
-                      }}
-                    ></div>
-                  </div>
-                </div>
                 <div className="absolute w-[29px] left-[64.75px] top-[194.5px]">
                   <p
                     className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
@@ -1455,7 +1495,8 @@ export default function InvitationDetailsSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                nhà gái &nbsp;
+                {households.right.label}
+                &nbsp;
               </p>
             </div>
             <div className="absolute w-[170px] left-0 top-[29.2px]">
@@ -1467,11 +1508,11 @@ export default function InvitationDetailsSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                Ông Huỳnh Ái Quốc
+                {households.right.father}
                 <br />
-                Bà Nguyễn Tân Trà
+                {households.right.mother}
                 <br />
-                Tỉnh. Đồng Nai
+                {households.right.address}
               </p>
             </div>
           </div>
@@ -1487,7 +1528,8 @@ export default function InvitationDetailsSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                nhà trai &nbsp;
+                {households.left.label}
+                &nbsp;
               </p>
             </div>
             <div className="absolute w-[170px] left-0 top-[29.2px]">
@@ -1499,11 +1541,11 @@ export default function InvitationDetailsSection({
                   textDecoration: "rgb(63, 92, 132)",
                 }}
               >
-                Ông Trần Văn Cường
+                {households.left.father}
                 <br />
-                Bà Trần Thị Hiền
+                {households.left.mother}
                 <br />
-                Tỉnh. Lâm Đồng
+                {households.left.address}
               </p>
             </div>
           </div>

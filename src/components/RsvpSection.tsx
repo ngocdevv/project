@@ -2,7 +2,10 @@ import React from "react";
 import { motion } from "motion/react";
 import Modal from "react-modal";
 
-const WEDDING_DATE = new Date("2026-01-17T00:00:00").getTime();
+type RsvpSectionProps = {
+  countdownDate: string;
+};
+
 const RSVP_MODAL_STYLES: Modal.Styles = {
   overlay: {
     backgroundColor: "rgba(17, 24, 39, 0.72)",
@@ -29,7 +32,7 @@ const RSVP_MODAL_PATTERN =
 
 const GOOGLE_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxSCD30mvKnlZ0CStUMXofIv1Iz1EN3RCQdj2Km1lGXKPC1aGcjfMn6NVXBIF7qnw3caQ/exec";
 
-export default function RsvpSection() {
+export default function RsvpSection({ countdownDate }: RsvpSectionProps) {
   const [countdown, setCountdown] = React.useState({
     days: 0,
     hours: 0,
@@ -47,10 +50,19 @@ export default function RsvpSection() {
     transportation: '',
   });
 
+  const weddingTimestamp = React.useMemo(() => {
+    const time = new Date(countdownDate).getTime();
+    return Number.isFinite(time) ? time : 0;
+  }, [countdownDate]);
+
   React.useEffect(() => {
+    if (!weddingTimestamp) {
+      return;
+    }
+
     const updateCountdown = () => {
       const now = Date.now();
-      const difference = WEDDING_DATE - now;
+      const difference = weddingTimestamp - now;
 
       if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -72,7 +84,7 @@ export default function RsvpSection() {
     const intervalId = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [weddingTimestamp]);
 
   React.useEffect(() => {
     Modal.setAppElement("#root");
