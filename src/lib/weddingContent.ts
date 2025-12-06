@@ -149,8 +149,8 @@ export const weddingContent: Record<WeddingVariant, WeddingContent> = {
     },
     invitation: {
       inviteLead: "Trân trọng kính mời Quý vị đến chung vui cùng gia đình chúng tôi",
-      groomName: "quốc học",
-      brideName: "ái như",
+      groomName: "ái như",
+      brideName: "quốc học",
       ceremony: {
         headline: "hôn lễ được tổ chức",
         timeLabel: "vào lúc 17 giờ",

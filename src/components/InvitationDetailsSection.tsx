@@ -14,9 +14,9 @@ const baseHeartPosition: CalendarCoordinates = { left: 215.6, top: 175.4 };
 const referenceDay = calendarDayPositions[DEFAULT_CALENDAR_DAY];
 const heartAnchorOffset: CalendarCoordinates = referenceDay
   ? {
-      left: baseHeartPosition.left - referenceDay.left,
-      top: baseHeartPosition.top - referenceDay.top,
-    }
+    left: baseHeartPosition.left - referenceDay.left,
+    top: baseHeartPosition.top - referenceDay.top,
+  }
   : { left: 0, top: 0 };
 
 const getHeartPositionForDay = (day?: number): CalendarCoordinates => {
@@ -289,7 +289,7 @@ export default function InvitationDetailsSection({
           >
             {ceremony.headline}
             <br />
-            {ceremony.timeLabel} 
+            {ceremony.timeLabel}
           </p>
         </motion.div>
         <motion.div
