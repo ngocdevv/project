@@ -5,12 +5,12 @@ type CalendarCoordinates = { left: number; top: number };
 
 // Coordinates for the hand-crafted calendar artwork so we can align overlays.
 const calendarDayPositions: Record<number, CalendarCoordinates> = {
-  17: { left: 223, top: 184.5 },
-  24: { left: 223, top: 221.5 },
+  17: { left: 275.75, top: 184.5 },
+  24: { left: 275.75, top: 221.5 },
 };
 
 const DEFAULT_CALENDAR_DAY = 17;
-const baseHeartPosition: CalendarCoordinates = { left: 215.6, top: 175.4 };
+const baseHeartPosition: CalendarCoordinates = { left: 268.35, top: 175.4 };
 const referenceDay = calendarDayPositions[DEFAULT_CALENDAR_DAY];
 const heartAnchorOffset: CalendarCoordinates = referenceDay
   ? {
@@ -527,7 +527,8 @@ export default function InvitationDetailsSection({
                 january
               </p>
             </div>
-            <div className="absolute w-[29px] left-[117.5px] top-[112.7px]">
+            {/* Row 1: 1 (Thu), 2 (Fri), 3 (Sat), 4 (Sun) */}
+            <div className="absolute w-[29px] left-[170.25px] top-[112.7px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -539,7 +540,7 @@ export default function InvitationDetailsSection({
                 1 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[170.25px] top-[112.7px]">
+            <div className="absolute w-[29px] left-[223px] top-[112.7px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -551,7 +552,7 @@ export default function InvitationDetailsSection({
                 2 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[223px] top-[112.7px]">
+            <div className="absolute w-[29px] left-[275.75px] top-[112.7px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -563,7 +564,7 @@ export default function InvitationDetailsSection({
                 3 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[275.75px] top-[112.7px]">
+            <div className="absolute w-[29px] left-[328.5px] top-[112.7px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -575,7 +576,8 @@ export default function InvitationDetailsSection({
                 4 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[328.5px] top-[112.7px]">
+            {/* Row 2: 5 (Mon), 6 (Tue), 7 (Wed), 8 (Thu), 9 (Fri), 10 (Sat), 11 (Sun) */}
+            <div className="absolute w-[29px] left-3 top-[147.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -587,7 +589,7 @@ export default function InvitationDetailsSection({
                 5 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-3 top-[147.5px]">
+            <div className="absolute w-[29px] left-[64.75px] top-[147.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -599,7 +601,7 @@ export default function InvitationDetailsSection({
                 6 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[64.75px] top-[147.5px]">
+            <div className="absolute w-[29px] left-[117.5px] top-[147.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -611,7 +613,7 @@ export default function InvitationDetailsSection({
                 7 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[117.5px] top-[147.5px]">
+            <div className="absolute w-[29px] left-[170.25px] top-[147.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -623,7 +625,7 @@ export default function InvitationDetailsSection({
                 8 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[170.25px] top-[147.5px]">
+            <div className="absolute w-[29px] left-[223px] top-[147.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -635,7 +637,7 @@ export default function InvitationDetailsSection({
                 9 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[223px] top-[147.5px]">
+            <div className="absolute w-[29px] left-[275.75px] top-[147.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -647,7 +649,7 @@ export default function InvitationDetailsSection({
                 10 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[275.75px] top-[147.5px]">
+            <div className="absolute w-[29px] left-[328.5px] top-[147.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -659,7 +661,8 @@ export default function InvitationDetailsSection({
                 11 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[328.5px] top-[147.5px]">
+            {/* Row 3: 12 (Mon), 13 (Tue), 14 (Wed), 15 (Thu), 16 (Fri), 17 (Sat), 18 (Sun) */}
+            <div className="absolute w-[29px] left-3 top-[184.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -671,7 +674,7 @@ export default function InvitationDetailsSection({
                 12 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-3 top-[184.5px]">
+            <div className="absolute w-[29px] left-[64.75px] top-[184.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -683,7 +686,7 @@ export default function InvitationDetailsSection({
                 13 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[64.75px] top-[184.5px]">
+            <div className="absolute w-[29px] left-[117.5px] top-[184.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -695,7 +698,7 @@ export default function InvitationDetailsSection({
                 14 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[117.5px] top-[184.5px]">
+            <div className="absolute w-[29px] left-[170.25px] top-[184.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -707,7 +710,7 @@ export default function InvitationDetailsSection({
                 15 &nbsp;
               </p>
             </div>
-            <div className="absolute w-[29px] left-[170.25px] top-[184.5px]">
+            <div className="absolute w-[29px] left-[223px] top-[184.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -719,7 +722,177 @@ export default function InvitationDetailsSection({
                 16 &nbsp;
               </p>
             </div>
+            <div className="absolute w-[29px] left-[275.75px] top-[184.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                17 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[328.5px] top-[184.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                18 &nbsp;
+              </p>
+            </div>
+            {/* Row 4: 19 (Mon), 20 (Tue), 21 (Wed), 22 (Thu), 23 (Fri), 24 (Sat), 25 (Sun) */}
+            <div className="absolute w-[29px] left-3 top-[221.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                19 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[64.75px] top-[221.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                20 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[117.5px] top-[221.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                21 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[170.25px] top-[221.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                22 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[223px] top-[221.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                23 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[275.75px] top-[221.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                24 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[328.5px] top-[221.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                25 &nbsp;
+              </p>
+            </div>
+            {/* Row 5: 26 (Mon), 27 (Tue), 28 (Wed), 29 (Thu), 30 (Fri), 31 (Sat) */}
+            <div className="absolute w-[29px] left-3 top-[261.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                26 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[64.75px] top-[261.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                27 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[117.5px] top-[261.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                28 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[170.25px] top-[261.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                29 &nbsp;
+              </p>
+            </div>
             <div className="absolute w-[29px] left-[223px] top-[261.5px]">
+              <p
+                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
+                style={{
+                  fontFamily:
+                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
+                  textDecoration: "rgb(255, 255, 255)",
+                }}
+              >
+                30 &nbsp;
+              </p>
+            </div>
+            <div className="absolute w-[29px] left-[275.75px] top-[261.5px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
                 style={{
@@ -731,6 +904,7 @@ export default function InvitationDetailsSection({
                 31 &nbsp;
               </p>
             </div>
+            {/* Heart position overlay */}
             <div
               className="absolute w-[42px] h-[42px]"
               style={heartPosition}
@@ -745,6 +919,7 @@ export default function InvitationDetailsSection({
                 ></div>
               </div>
             </div>
+            {/* Day of week headers */}
             <div className="absolute w-[52px] left-0 top-[70px]">
               <p
                 className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
@@ -827,174 +1002,6 @@ export default function InvitationDetailsSection({
                 }}
               >
                 sun &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[223px] top-[221.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                24 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[275.75px] top-[221.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                25 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[328.5px] top-[221.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                26 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-3 top-[261.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                27 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[64.75px] top-[261.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                28 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[117.5px] top-[261.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                29 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[170.25px] top-[261.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                30 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[223px] top-[184.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                17 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[275.75px] top-[184.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                18 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[328.5px] top-[184.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                19 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-3 top-[221.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                20 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[64.75px] top-[221.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                21 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[117.5px] top-[221.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                22 &nbsp;
-              </p>
-            </div>
-            <div className="absolute w-[29px] left-[170.25px] top-[221.5px]">
-              <p
-                className="bg-center bg-cover inline-block text-center w-full text-white text-[16px] leading-[25.6px]"
-                style={{
-                  fontFamily:
-                    "QSTUSQUUSUGQUULUFRElVTSUVEY",
-                  textDecoration: "rgb(255, 255, 255)",
-                }}
-              >
-                23 &nbsp;
               </p>
             </div>
           </div>
